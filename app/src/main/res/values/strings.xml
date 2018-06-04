@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">BundleTest</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="main_activity_message">This is MainActivity</string>
+    <string name="button_launch_tab_activity">Launch Activity</string>
+    <string name="hint_message">Input a message</string>
+    <string name="empty_string">Empty string</string>
+
+    <string-array name="days_string">
+        <item>SUN</item>
+        <item>MON</item>
+        <item>TUE</item>
+        <item>WED</item>
+        <item>THU</item>
+        <item>FRI</item>
+        <item>SAT</item>
+    </string-array>
+
+    <string-array name="tab_title">
+        <item>Bundle</item>
+        <item>RecyclerView</item>
+    </string-array>
+</resources>
