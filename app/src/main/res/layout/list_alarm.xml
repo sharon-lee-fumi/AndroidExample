@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:bind="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -10,6 +10,10 @@
         <variable
             name="alarm"
             type="com.pointclickcare.brian.bundletest.model.Alarm" />
+
+        <variable
+            name="visibleExtraView"
+            type="boolean" />
 
     </data>
 
@@ -48,5 +52,10 @@
             android:text="@{alarm.getDaysString(daysStr)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="?android:attr/textColorPrimary" />
+
+        <include
+            android:id="@+id/extra_view"
+            layout="@layout/list_extra"
+            bind:visible="@{visibleExtraView}" />
     </LinearLayout>
 </layout>

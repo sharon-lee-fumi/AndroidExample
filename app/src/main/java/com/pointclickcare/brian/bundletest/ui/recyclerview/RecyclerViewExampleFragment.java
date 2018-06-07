@@ -28,7 +28,7 @@ public class RecyclerViewExampleFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        alarmList = generateAlarmData(1000);
+        alarmList = generateAlarmData(100);
     }
 
     @Override

@@ -18,8 +18,31 @@
         <item>SAT</item>
     </string-array>
 
+    <string name="days_short_string_sun">S</string>
+    <string name="days_short_string_mon">M</string>
+    <string name="days_short_string_tue">T</string>
+    <string name="days_short_string_wed">W</string>
+    <string name="days_short_string_thu">T</string>
+    <string name="days_short_string_fri">F</string>
+    <string name="days_short_string_sat">S</string>
+
+    <string-array name="days_short_string">
+        <item>@string/days_short_string_sun</item>
+        <item>@string/days_short_string_mon</item>
+        <item>@string/days_short_string_tue</item>
+        <item>@string/days_short_string_wed</item>
+        <item>@string/days_short_string_thu</item>
+        <item>@string/days_short_string_fri</item>
+        <item>@string/days_short_string_sat</item>
+    </string-array>
+
     <string-array name="tab_title">
         <item>Bundle</item>
         <item>RecyclerView</item>
     </string-array>
+
+    <string name="extra_view_text">This is another list item type</string>
+    <string name="extra_view_repeat">Repeat</string>
+
+    <string name="text_click">Click this text</string>
 </resources>

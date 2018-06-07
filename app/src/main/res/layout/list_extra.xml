@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="visible"
+            type="boolean" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:visibility="@{visible ? View.VISIBLE : View.GONE}">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/extra_view_repeat" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <include
+                layout="@layout/day"
+                bind:dayStr="@{@string/days_short_string_sun}"
+                bind:selected="@{false}" />
+
+            <include
+                layout="@layout/day"
+                bind:dayStr="@{@string/days_short_string_mon}"
+                bind:selected="@{true}" />
+
+            <include
+                layout="@layout/day"
+                bind:dayStr="@{@string/days_short_string_tue}"
+                bind:selected="@{true}" />
+
+            <include
+                layout="@layout/day"
+                bind:dayStr="@{@string/days_short_string_wed}"
+                bind:selected="@{true}" />
+
+            <include
+                layout="@layout/day"
+                bind:dayStr="@{@string/days_short_string_thu}"
+                bind:selected="@{false}" />
+
+            <include
+                layout="@layout/day"
+                bind:dayStr="@{@string/days_short_string_fri}"
+                bind:selected="@{false}" />
+
+            <include
+                layout="@layout/day"
+                bind:dayStr="@{@string/days_short_string_sat}"
+                bind:selected="@{false}" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>
