@@ -25,6 +25,9 @@ public class BundleExampleFragment extends Fragment {
     public BundleExampleFragment(String message) {
         this.message = message;
     }
+    // for the question: using constructors with parameters to pass msg will make a problem
+    // constructors with parameters will not be called when the fragment is re-instantiated
+    // so use setArguments instead
 
     public static BundleExampleFragment newInstance(String message) {
         BundleExampleFragment fragment = new BundleExampleFragment();

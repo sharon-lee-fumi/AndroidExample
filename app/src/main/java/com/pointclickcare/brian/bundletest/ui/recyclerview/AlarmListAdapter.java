@@ -45,7 +45,12 @@ public class AlarmListAdapter extends RecyclerView.Adapter<AlarmListAdapter.View
 
             // TODO: Now, these two sentences have two bugs. What are they?
             binding.setAlarm(mAlarmList.get(position));
+            // the position is the cell's position which include list_another_type
+            // so the alarm number skips counting by 5s
+
             binding.setVisibleExtraView(false);
+            // click on the cell, VisibleExtraView is visible
+            // then scroll up/down the RecyclerView, the visibleExtraView will be invisible
 
         } else if (holder.binding instanceof ListExtraBinding) {
             ListExtraBinding binding = (ListExtraBinding) holder.binding;
