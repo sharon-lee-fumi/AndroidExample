@@ -41,7 +41,7 @@
         <item>RecyclerView</item>
     </string-array>
 
-    <string name="extra_view_text">This is another list item type</string>
+    <string name="header_title">This is another list item type</string>
     <string name="extra_view_repeat">Repeat</string>
 
     <string name="text_click">Click this text</string>

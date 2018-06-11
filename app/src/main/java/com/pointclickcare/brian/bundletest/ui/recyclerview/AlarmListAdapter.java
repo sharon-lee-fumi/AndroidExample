@@ -10,18 +10,18 @@ import android.view.ViewGroup;
 import com.pointclickcare.brian.bundletest.BR;
 import com.pointclickcare.brian.bundletest.R;
 import com.pointclickcare.brian.bundletest.databinding.ListAlarmBinding;
-import com.pointclickcare.brian.bundletest.databinding.ListExtraBinding;
+import com.pointclickcare.brian.bundletest.databinding.ListAnotherTypeBinding;
 import com.pointclickcare.brian.bundletest.model.Alarm;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AlarmListAdapter extends RecyclerView.Adapter<AlarmListAdapter.ViewHolder> {
-    private List<Alarm> mAlarmList = new ArrayList<>();
+    private List<ListItem> listItems = new ArrayList<>();
     private String[] daysString;
 
-    void setSource(List<Alarm> list) {
-        mAlarmList = list;
+    void setSource(List<ListItem> list) {
+        listItems = list;
     }
 
     void setDaysString(String[] daysString) {
@@ -32,7 +32,6 @@ public class AlarmListAdapter extends RecyclerView.Adapter<AlarmListAdapter.View
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         ViewDataBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
                 viewType == 0 ? R.layout.list_alarm : R.layout.list_another_type, parent, false);
-        binding.getRoot().setOnClickListener((view) -> binding.setVariable(BR.visibleExtraView, true));
         return new ViewHolder(binding.getRoot(), binding);
     }
 
@@ -40,30 +39,31 @@ public class AlarmListAdapter extends RecyclerView.Adapter<AlarmListAdapter.View
     public void onBindViewHolder(ViewHolder holder, int position) {
         if (holder.binding instanceof ListAlarmBinding) {
             ListAlarmBinding binding = (ListAlarmBinding) holder.binding;
+            Alarm alarm = (Alarm) listItems.get(position).data;
+            boolean visible = listItems.get(position).selected;
 
             binding.setDaysStr(daysString);
-
-            // TODO: Now, these two sentences have two bugs. What are they?
-            binding.setAlarm(mAlarmList.get(position));
-            binding.setVisibleExtraView(false);
-
-        } else if (holder.binding instanceof ListExtraBinding) {
-            ListExtraBinding binding = (ListExtraBinding) holder.binding;
-            binding.setVisible(true);
+            binding.setAlarm(alarm);
+            binding.setVisibleExtraView(visible);
+        } else if (holder.binding instanceof ListAnotherTypeBinding) {
+            ListAnotherTypeBinding binding = (ListAnotherTypeBinding) holder.binding;
+            String headerStr = (String) listItems.get(position).data;
+            binding.setHeaderString(headerStr);
         }
     }
 
     @Override
     public int getItemCount() {
-        return mAlarmList.size();
+        return listItems.size();
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (position % 5 == 0) {
-            return 1;
-        } else {
+        ListItem listItem = listItems.get(position);
+        if (listItem.data instanceof Alarm) {
             return 0;
+        } else {
+            return 1;
         }
     }
 
@@ -73,6 +73,12 @@ public class AlarmListAdapter extends RecyclerView.Adapter<AlarmListAdapter.View
         ViewHolder(View itemView, ViewDataBinding binding) {
             super(itemView);
             this.binding = binding;
+
+            itemView.setOnClickListener((view) -> {
+                int position = getAdapterPosition();
+                listItems.get(position).selected ^= true;
+                binding.setVariable(BR.visibleExtraView, listItems.get(position).selected);
+            });
         }
     }
 }
