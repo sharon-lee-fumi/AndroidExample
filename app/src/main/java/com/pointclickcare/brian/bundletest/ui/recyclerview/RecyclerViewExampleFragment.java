@@ -17,7 +17,7 @@ import java.util.List;
 
 public class RecyclerViewExampleFragment extends Fragment {
     FragmentRecyclerViewBinding binding;
-    List<Alarm> alarmList = new ArrayList<>();
+    List<ListItem> listItems = new ArrayList<>();
     AlarmListAdapter adapter;
 
     public static RecyclerViewExampleFragment newInstance() {
@@ -28,7 +28,8 @@ public class RecyclerViewExampleFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        alarmList = generateAlarmData(100);
+        listItems = generateAlarmData(100);
+        addListHeaderAtRandomPlace(listItems);
     }
 
     @Override
@@ -36,7 +37,7 @@ public class RecyclerViewExampleFragment extends Fragment {
         binding = FragmentRecyclerViewBinding.inflate(getLayoutInflater());
 
         adapter = new AlarmListAdapter();
-        adapter.setSource(alarmList);
+        adapter.setSource(listItems);
         adapter.setDaysString(getResources().getStringArray(R.array.days_string));
 
         binding.listAlarm.setAdapter(adapter);
@@ -45,8 +46,8 @@ public class RecyclerViewExampleFragment extends Fragment {
         return binding.getRoot();
     }
 
-    private List<Alarm> generateAlarmData(int count) {
-        List<Alarm> alarmList = new ArrayList<>();
+    private List<ListItem> generateAlarmData(int count) {
+        List<ListItem> alarmList = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
             Alarm alarm = new Alarm();
@@ -57,9 +58,17 @@ public class RecyclerViewExampleFragment extends Fragment {
                 days[j] = (long) (Math.random() * 100) % 2 != 0;
             }
             alarm.days = days;
-            alarmList.add(alarm);
+            alarmList.add(new ListItem<>(alarm));
         }
 
         return alarmList;
+    }
+
+    private void addListHeaderAtRandomPlace(List<ListItem> list) {
+        int numHeader = list.size() / 5;
+        for (int i = 0; i < numHeader; i++) {
+            ListItem headerListItem = new ListItem<>(getString(R.string.header_title));
+            list.add((int) (list.size() * Math.random()), headerListItem);
+        }
     }
 }
