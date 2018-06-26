@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.pointclickcare.brian.bundletest.R;
 import com.pointclickcare.brian.bundletest.databinding.FragmentBundleBinding;
-import com.pointclickcare.brian.bundletest.util.Extra;
+import com.pointclickcare.brian.bundletest.util.Extras;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,7 @@ public class BundleExampleFragment extends Fragment {
     public static BundleExampleFragment newInstance(String message) {
         BundleExampleFragment fragment = new BundleExampleFragment();
         Bundle args = new Bundle();
-        args.putString(Extra.DATA, message);
+        args.putString(Extras.DATA, message);
         fragment.setArguments(args);
         return fragment;
     }
@@ -38,7 +38,7 @@ public class BundleExampleFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            this.message = getArguments().getString(Extra.DATA);
+            this.message = getArguments().getString(Extras.DATA);
         }
     }
 
@@ -54,9 +54,10 @@ public class BundleExampleFragment extends Fragment {
             textView.setOnClickListener(this::notifyClickEvent);
             textView.setTextAppearance(android.R.style.TextAppearance_DeviceDefault_Large);
 
-            observers.add(view -> {
-                textView.setTextColor(getResources().getColor(view != textView ? android.R.color.primary_text_light : R.color.colorAccent, null));
-            });
+            observers.add(view ->
+                    textView.setTextColor(getResources().getColor(view != textView ?
+                            android.R.color.primary_text_light : R.color.colorAccent, null))
+            );
             binding.mainContainer.addView(textView);
         }
 

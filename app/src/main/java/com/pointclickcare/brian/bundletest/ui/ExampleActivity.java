@@ -10,10 +10,11 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 
 import com.pointclickcare.brian.bundletest.R;
-import com.pointclickcare.brian.bundletest.ui.bundle.BundleExampleFragment;
 import com.pointclickcare.brian.bundletest.databinding.ActivityExampleBinding;
+import com.pointclickcare.brian.bundletest.ui.RestfulApi.RestfulAPIExampleFragment;
+import com.pointclickcare.brian.bundletest.ui.bundle.BundleExampleFragment;
 import com.pointclickcare.brian.bundletest.ui.recyclerview.RecyclerViewExampleFragment;
-import com.pointclickcare.brian.bundletest.util.Extra;
+import com.pointclickcare.brian.bundletest.util.Extras;
 
 public class ExampleActivity extends AppCompatActivity {
     ActivityExampleBinding binding;
@@ -40,18 +41,20 @@ public class ExampleActivity extends AppCompatActivity {
                     String message = "";
                     Intent intent = getIntent();
                     if (intent != null) {
-                        message = intent.getStringExtra(Extra.DATA);
+                        message = intent.getStringExtra(Extras.DATA);
                     }
                     return BundleExampleFragment.newInstance(message);
                 case 1:
                     return RecyclerViewExampleFragment.newInstance();
+                case 2:
+                    return RestfulAPIExampleFragment.newInstance();
             }
             return null;
         }
 
         @Override
         public int getCount() {
-            return 2;
+            return 3;
         }
 
         @Nullable

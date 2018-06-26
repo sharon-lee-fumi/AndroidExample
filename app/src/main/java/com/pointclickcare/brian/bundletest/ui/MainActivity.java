@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.pointclickcare.brian.bundletest.R;
 import com.pointclickcare.brian.bundletest.databinding.ActivityMainBinding;
 import com.pointclickcare.brian.bundletest.model.Data;
-import com.pointclickcare.brian.bundletest.util.Extra;
+import com.pointclickcare.brian.bundletest.util.Extras;
 
 public class MainActivity extends AppCompatActivity {
     Data data = new Data();
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void launchActivity(Class<?> clz, String message) {
         Intent intent = new Intent(this, clz);
-        intent.putExtra(Extra.DATA, message);
+        intent.putExtra(Extras.DATA, message);
         startActivity(intent);
     }
 }
