@@ -1,5 +1,5 @@
 package com.pointclickcare.brian.bundletest.util;
 
-public interface Extra {
+public interface Extras {
     String DATA = "data";
 }

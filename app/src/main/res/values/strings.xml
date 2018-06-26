@@ -39,10 +39,13 @@
     <string-array name="tab_title">
         <item>Bundle</item>
         <item>RecyclerView</item>
+        <item>RestfulAPI</item>
     </string-array>
 
     <string name="header_title">This is another list item type</string>
     <string name="extra_view_repeat">Repeat</string>
 
     <string name="text_click">Click this text</string>
+
+    <string name="zone_info">Country: %1$s, Zone: %2$s, Time: %3$s</string>
 </resources>
